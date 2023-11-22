@@ -19,6 +19,7 @@ class StockPicking(models.Model):
     )
 
     picking_id = fields.Many2one('stock.picking', string='Picking')
+    is_dirty = fields.Boolean("Is Dirty", transient=True, default=False)  
 
     @api.model
     def create(self, vals):
@@ -37,9 +38,12 @@ class StockPicking(models.Model):
     
 
     def action_mi_boton(self, context=None):
-       
+        print(f"Processing move {move.id}")
         for move in self.move_ids:
-            move._onchange_analytic()
+            move._onchange_analytic()   
+        print("Writing is_dirty to False")
+        self.write({'is_dirty': False})
+        return True
 
 class StockMove(models.Model):
     _name = "stock.move"

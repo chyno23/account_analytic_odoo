@@ -13,6 +13,7 @@
                     class="btn-link mb-1 px-0" icon="fa-refresh" 
                     name="action_mi_boton"  colspan="2"
                 /> 
+                <field name="is_dirty" invisible="1"/>
             </xpath>  
             <xpath
                 expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']"
